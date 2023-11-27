@@ -16,6 +16,7 @@ return new class extends Migration
     {
         Schema::create('characters', function (Blueprint $table) {
             $table->id();
+
             $table->string('name', 30);
             $table->decimal('height', 4, 2);
             $table->smallInteger('weight')->unsigned();
@@ -28,6 +29,8 @@ return new class extends Migration
             $table->tinyInteger('INT');
             $table->tinyInteger('SAG');
             $table->tinyInteger('CAR');
+            $table->string('slug', 100)->unique();
+
             $table->timestamps();
         });
     }
