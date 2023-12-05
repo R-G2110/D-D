@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.admin')
 
 @section('content')
 
@@ -17,7 +17,7 @@
 
         <div class="row mb-4">
             <div class="col-8">
-                <form action="{{ route('characters.update',$character) }}" method="POST">
+                <form action="{{ route('admin.characters.update',$character) }}" method="POST">
                     @csrf
                     @method("PUT")
                     <div class="mb-3">

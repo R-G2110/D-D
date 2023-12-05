@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Models\Character;
 use App\Http\Requests\CharacterRequest;
+use App\Http\Controllers\Controller;
 
 
 class CharacterController extends Controller
@@ -20,7 +21,7 @@ class CharacterController extends Controller
         if (empty($characters)) {
             abort(404);
         }
-        return view("characters.index", compact("characters"));
+        return view("admin.characters.index", compact("characters"));
 
     }
 
@@ -32,7 +33,7 @@ class CharacterController extends Controller
     public function create()
     {
 
-        return view("characters.create");
+        return view("admin.characters.create");
     }
 
     /**
@@ -56,7 +57,7 @@ class CharacterController extends Controller
 
         $new_character->save();
 
-        return redirect()->route('characters.show', $new_character->id);
+        return redirect()->route('admin.characters.show', $new_character->id);
     }
 
     /**
@@ -68,7 +69,7 @@ class CharacterController extends Controller
     public function show($id)
     {
         $character = Character::find($id);
-        return view("characters.show", compact("character"));
+        return view("admin.characters.show", compact("character"));
     }
 
     /**
@@ -80,7 +81,7 @@ class CharacterController extends Controller
     public function edit($id)
     {
         $character = Character::find($id);
-        return view('characters.edit', compact('character'));
+        return view('admin.characters.edit', compact('character'));
     }
 
     /**
@@ -103,7 +104,7 @@ class CharacterController extends Controller
 
         $character->update($form_data);
 
-        return redirect()->route('characters.show', $character->id);
+        return redirect()->route('admin.characters.show', $character->id);
     }
 
     /**
@@ -115,6 +116,6 @@ class CharacterController extends Controller
     public function destroy(Character $character)
     {
         $character->delete();
-        return redirect()->route('characters.index')->with('deleted', "Il personaggio $character->name è stato eliminato correttamente!");
+        return redirect()->route('admin.characters.index')->with('deleted', "Il personaggio $character->name è stato eliminato correttamente!");
     }
 }

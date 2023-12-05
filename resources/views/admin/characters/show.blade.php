@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.admin')
 
 @section('content')
 
@@ -19,10 +19,9 @@
                 <h4 class="card-text"> CAR: {{$character->CAR}}</h4>
 
 
-                <a href="{{ route('characters.show', $character)}}" class="btn btn-primary">Più info</a>
-                <a href="{{ route('characters.edit', $character)}}" class="btn btn-warning">Modifica</a>
+                <a href="{{ route('admin.characters.edit', $character)}}" class="btn btn-warning">Modifica</a>
 
-                <form class="delete-btn d-inline-block" action="{{ route('characters.destroy', $character) }}" method="POST"
+                <form class="delete-btn d-inline-block" action="{{ route('admin.characters.destroy', $character) }}" method="POST"
                     onsubmit="return confirm('Sei sicuro di voler eliminare {{$character->name}}?')">
                     @csrf
                     @method('DELETE')
