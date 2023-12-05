@@ -3,6 +3,13 @@
 @section('content')
 
     <div class="container mt-5">
+        {{-- stampo l'alert solo se esiste la variabile di sessione inviata dal metodo destroy del controller --}}
+        @if (session('deleted'))
+        <div class="alert alert-success" role="alert">
+            {{ session('deleted') }}
+        </div>
+        @endif
+
         <h1 class="text-center mb-4"> D&D Characters</h1>
         <div class="row">
             @foreach ($characters as $character)
