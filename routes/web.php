@@ -16,6 +16,7 @@ use App\Http\Controllers\CharacterController;
 |
 */
 
+Route::get('/', [PageController::class, "index"])->name("home");
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -27,9 +28,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::middleware(['auth', 'verified'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function(){
+        Route::get('/', [DashboardController::class, 'index'])->name('home');
+        Route::resource('characters', CharacterController::class);
 
 
-Route::get('/', [PageController::class, "index"])->name("home");
+    });
 
 Route::resource('characters', CharacterController::class);
 
