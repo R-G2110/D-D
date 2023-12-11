@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('races', function (Blueprint $table) {
             $table->id();
+            $table->string('slug', 30)->unique();
             $table->string('name', 30);
             $table->text('description');
             $table->tinyInteger('Mod_FOR');
