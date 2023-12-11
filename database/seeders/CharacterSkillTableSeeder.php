@@ -18,7 +18,7 @@ class CharacterSkillTableSeeder extends Seeder
             $character = Character::inRandomOrder()->first();
             $skill_id = Skill::inRandomOrder()->first()->id;
 
-            $character->tecnology()->attach($skill_id);
+            $character->skills()->attach($skill_id);
         }
     }
 }

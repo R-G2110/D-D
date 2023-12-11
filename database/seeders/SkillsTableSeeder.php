@@ -19,7 +19,7 @@ class SkillsTableSeeder extends Seeder
             $skill = new Skill();
             $skill->name = $faker->word(30);
             $skill->description = $faker->paragraph();
-            $skill->characteristic = $faker->words(30,true);
+            $skill->characteristic = $faker->word(30);
             $skill->slug = Helper::generateSlug($skill->name, Skill::class);
 
             $skill->save();
