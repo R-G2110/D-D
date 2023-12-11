@@ -11,6 +11,11 @@ class Character extends Model
 {
     use HasFactory;
 
+    public function skills()
+    {
+        return $this->belongsToMany(Skill::class);
+    }
+
     protected $fillable = [
         'name',
         'height',
