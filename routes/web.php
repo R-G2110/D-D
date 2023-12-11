@@ -3,7 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Guest\PageController;
-use App\Http\Controllers\CharacterController;
+use App\Http\Controllers\Admin\CharacterController;
+use App\Http\Controllers\Admin\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,7 @@ use App\Http\Controllers\CharacterController;
 |
 */
 
+Route::get('/', [PageController::class, "index"])->name("home");
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -27,11 +29,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::middleware(['auth', 'verified'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function(){
+        Route::get('/', [DashboardController::class, 'index'])->name('home');
+        Route::resource('characters', CharacterController::class);
 
 
-Route::get('/', [PageController::class, "index"])->name("home");
-
-Route::resource('characters', CharacterController::class);
+    });
 
 
 require __DIR__.'/auth.php';

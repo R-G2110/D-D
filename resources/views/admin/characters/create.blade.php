@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.admin')
 
 @section('content')
 
@@ -17,7 +17,7 @@
 
         <div class="row mb-4">
             <div class="col-8">
-                <form action="{{ route('characters.store') }}" method="POST">
+                <form action="{{ route('admin.characters.store') }}" method="POST">
                     @csrf
                     <div class="mb-3">
                         <label for="name" class="form-label">Nome personaggio</label>

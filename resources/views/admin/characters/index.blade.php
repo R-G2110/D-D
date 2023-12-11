@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.admin')
 
 @section('content')
 
@@ -19,10 +19,10 @@
                         <div class="card-body">
                             <h5 class="card-title">Nome: {{$character->name}}</h5>
                             <p class="card-text">Background: {{$character->background}}</p>
-                            <a href="{{ route('characters.show', $character)}}" class="btn btn-primary">Più info</a>
-                            <a href="{{ route('characters.edit', $character)}}" class="btn btn-warning">Modifica</a>
+                            <a href="{{ route('admin.characters.show', $character)}}" class="btn btn-primary">Più info</a>
+                            <a href="{{ route('admin.characters.edit', $character)}}" class="btn btn-warning">Modifica</a>
 
-                            <form class="delete-btn d-inline-block" action="{{ route('characters.destroy', $character) }}" method="POST"
+                            <form class="delete-btn d-inline-block" action="{{ route('admin.characters.destroy', $character) }}" method="POST"
                                 onsubmit="return confirm('Sei sicuro di voler eliminare {{$character->name}}?')">
                                 @csrf
                                 @method('DELETE')
