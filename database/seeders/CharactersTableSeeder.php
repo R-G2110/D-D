@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Character;
 use Faker\Generator as Faker;
 use Illuminate\Broadcasting\Channel;
-use illuminate\Support\Str;
+use App\Functions\Helper;
 
 class CharactersTableSeeder extends Seeder
 {
@@ -32,7 +32,7 @@ class CharactersTableSeeder extends Seeder
             $character->INT = $faker->numberBetween(4, 20);
             $character->SAG = $faker->numberBetween(4, 20);
             $character->CAR = $faker->numberBetween(4, 20);
-            $character->slug = Character::generateSlug($character->name);
+            $character->slug = Helper::generateSlug($character->name, Character::class);
 
             $character->save();
         }
