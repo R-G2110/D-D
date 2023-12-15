@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Functions\Helper;
 use Illuminate\Http\Request;
 use App\Models\Character;
+use App\Models\Race;
 use App\Http\Requests\CharacterRequest;
 use App\Http\Controllers\Controller;
 
@@ -32,8 +34,8 @@ class CharacterController extends Controller
      */
     public function create()
     {
-
-        return view("admin.characters.create");
+        $races = Race::all();
+        return view("admin.characters.create", compact("races"));
     }
 
     /**
@@ -50,7 +52,7 @@ class CharacterController extends Controller
         $new_character = new Character();
 
         //lo slag va fatto comunque perche va creato
-        $form_data['slug'] = Character::generateSlug($form_data['name']);
+        $form_data['slug'] = Helper::generateSlug($form_data['name'], Character::class);
 
         //si puo fare questo al posto di su se faccio su comic il fillable
         $new_character->fill($form_data);
@@ -80,8 +82,9 @@ class CharacterController extends Controller
      */
     public function edit($id)
     {
+        $races = Race::all();
         $character = Character::find($id);
-        return view('admin.characters.edit', compact('character'));
+        return view('admin.characters.edit', compact('character','races'));
     }
 
     /**
@@ -99,7 +102,7 @@ class CharacterController extends Controller
             $form_data['slug'] = $character->slug;
         }
         else{
-            $form_data['slug'] = Character::generateSlug($form_data['name']);
+            $form_data['slug'] = Helper::generateSlug($form_data['name'], Character::class);
         }
 
         $character->update($form_data);
