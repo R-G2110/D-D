@@ -32,6 +32,22 @@
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
+
+                    <div class="mb-3">
+                        <label for="race_id" class="form-label">Razza</label>
+                        <select class="form-select" name="race_id" id="race_id">
+                            <option value="">Seleziona una Razza</option>
+
+                            @foreach ($races as $race)
+                            <option
+                            value="{{$race->id}}"
+                            {{ old('race_id', $character?->race_id) == $race->id?'selected' : '' }}>
+                            {{$race->name}}</option>
+                            @endforeach
+
+                        </select>
+                    </div>
+
                     <div class="mb-3">
                         <label for="image" class="form-label">Immagine</label>
                         <input type="text"
