@@ -5,8 +5,15 @@
     <div class="container mt-5">
         <h1 class="text-center">Info {{$character->name}}</h1>
         <div class="card justify-content-center w-50">
-            <img src="{{$character->image}}" class="card-img-top" alt="...">
+
+            @if ($character->image !== null)
+                <img src="{{$character->image}}" class="card-img-top" alt="{{$character->name}}">
+            @else
+                <img src="/img/placeholder.webp" alt="{{$character->name}}">
+            @endif
+
             <div class="card-body">
+                <p><strong>Race:</strong> {{ $character->race?->name }}</p>
                 <p class="card-text">Background: {{$character->background}}</p>
                 <p class="card-text">Altezza: {{$character->height}} ,
                     Peso: {{$character->weight}}</p>
