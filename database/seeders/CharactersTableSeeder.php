@@ -8,6 +8,7 @@ use App\Models\Character;
 use Faker\Generator as Faker;
 use Illuminate\Broadcasting\Channel;
 use App\Functions\Helper;
+use App\Models\Race;
 
 class CharactersTableSeeder extends Seeder
 {
@@ -20,6 +21,7 @@ class CharactersTableSeeder extends Seeder
     {
         for($i=0; $i<10; $i++){
             $character = new Character();
+            $character->race_id = Race::inRandomOrder()->first()->id;
             $character->name = $faker->name();
             $character->height = $faker->randomFloat(2, 1, 3);
             $character->weight = $faker->numberBetween(1, 1000);
