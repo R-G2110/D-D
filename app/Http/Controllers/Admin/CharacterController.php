@@ -8,6 +8,7 @@ use App\Models\Character;
 use App\Models\Race;
 use App\Http\Requests\CharacterRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 
 class CharacterController extends Controller
@@ -53,6 +54,11 @@ class CharacterController extends Controller
 
         //lo slag va fatto comunque perche va creato
         $form_data['slug'] = Helper::generateSlug($form_data['name'], Character::class);
+
+        if(array_key_exists('image', $form_data)) {
+            $form_data['image'] = Storage::put('uploads', $form_data['image']);
+        }
+
 
         //si puo fare questo al posto di su se faccio su comic il fillable
         $new_character->fill($form_data);
@@ -103,6 +109,13 @@ class CharacterController extends Controller
         }
         else{
             $form_data['slug'] = Helper::generateSlug($form_data['name'], Character::class);
+        }
+
+        if(array_key_exists('image', $form_data)){
+            if($character->image){
+                Storage::disk('public')->delete($character->image);
+            }
+            $form_data['image'] = Storage::put('uploads', $form_data['image']);
         }
 
         $character->update($form_data);
