@@ -16,19 +16,9 @@ class Character extends Model
         return $this->belongsToMany(Skill::class);
     }
 
-    protected $fillable = [
-        'name',
-        'height',
-        'weight',
-        'background',
-        'armor_class',
-        'FOR',
-        'DES',
-        'COS',
-        'INT',
-        'SAG',
-        'CAR',
-        'image',
-        'slug',
-    ];
+    public function race(){
+        return $this->belongsTo(Race::class);
+    }
+
+    protected $guarded = ['id'];
 }
