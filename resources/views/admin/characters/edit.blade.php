@@ -17,7 +17,7 @@
 
         <div class="row mb-4">
             <div class="col-8">
-                <form action="{{ route('admin.characters.update',$character) }}" method="POST">
+                <form action="{{ route('admin.characters.update',$character) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method("PUT")
                     <div class="mb-3">
@@ -50,16 +50,21 @@
 
                     <div class="mb-3">
                         <label for="image" class="form-label">Immagine</label>
-                        <input type="text"
-                        class="form-control @error('image') is-invalid @enderror"
-                        id="image"
-                        name="image"
-                        value="{{ old('image', $character->image) }}"
+                        <input
+                          id="image"
+                          class="form-control @error('image') is-invalid @enderror"
+                          name="image"
+                          type="file"
+                          onchange="showImage(event)"
+                          value="{{ old('image', $character?->image) }}"
                         >
-                        @error('image')
-                            <p class="text-danger">{{ $message }}</p>
-                        @enderror
+
+
+                        <img id="thumb" width="150" onerror="this.src='/img/placeholder.webp'"  src="{{ asset('storage/' . $character?->image) }}" />
+
                     </div>
+
+
                     <div class="mb-3">
                         <label for="height" class="form-label">Altezza</label>
                         <input type="number"

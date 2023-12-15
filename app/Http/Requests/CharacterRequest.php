@@ -25,7 +25,6 @@ class CharacterRequest extends FormRequest
     {
         return [
             "name" => "required|min:2|max:50",
-            "image" => "nullable|max:255",
             "weight" => "required|numeric",
             "height" => "required|numeric",
             "armor_class" => "required|numeric|min:1|max:20",
@@ -78,7 +77,6 @@ class CharacterRequest extends FormRequest
             "CAR.numeric" => "Il numero della statistica Carisma deve essere un numero.",
             "CAR.min" => "Il numero della statistica Carisma non deve essere minore di :min.",
             "CAR.max" => "Il numero della statistica Carisma deve essere minore di :max.",
-            "image.max" => "L'immagine deve essere minore di :max caratteri"
         ];
     }
 }

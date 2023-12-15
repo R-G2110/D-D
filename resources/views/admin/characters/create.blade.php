@@ -17,7 +17,7 @@
 
         <div class="row mb-4">
             <div class="col-8">
-                <form action="{{ route('admin.characters.store') }}" method="POST">
+                <form action="{{ route('admin.characters.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label for="name" class="form-label">Nome personaggio</label>
@@ -49,16 +49,21 @@
 
                     <div class="mb-3">
                         <label for="image" class="form-label">Immagine</label>
-                        <input type="text"
-                        class="form-control @error('image') is-invalid @enderror"
-                        id="image"
-                        name="image"
-                        value="{{ old('image') }}"
+                        <input
+                          id="image"
+                          class="form-control @error('image') is-invalid @enderror"
+                          name="image"
+                          type="file"
+                          onchange="showImage(event)"
+                          value="{{ old('image') }}"
                         >
                         @error('image')
-                            <p class="text-danger">{{ $message }}</p>
+                            <p class="text-danger">{{ $image }}</p>
                         @enderror
+
                     </div>
+
+
                     <div class="mb-3">
                         <label for="height" class="form-label">Altezza</label>
                         <input type="number"

@@ -50,15 +50,17 @@ class CharacterController extends Controller
 
         $form_data = $request->all();
 
+        $form_data['image_name'] = "";
         $new_character = new Character();
+
 
         //lo slag va fatto comunque perche va creato
         $form_data['slug'] = Helper::generateSlug($form_data['name'], Character::class);
 
         if(array_key_exists('image', $form_data)) {
+            $form_data['image_name'] = $request->file('image')->getClientOriginalName();
             $form_data['image'] = Storage::put('uploads', $form_data['image']);
         }
-
 
         //si puo fare questo al posto di su se faccio su comic il fillable
         $new_character->fill($form_data);
@@ -115,6 +117,7 @@ class CharacterController extends Controller
             if($character->image){
                 Storage::disk('public')->delete($character->image);
             }
+            $form_data['image_name'] = $request->file('image')->getClientOriginalName();
             $form_data['image'] = Storage::put('uploads', $form_data['image']);
         }
 

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->smallInteger('weight')->unsigned();
             $table->string('background',50);
             $table->string('image')->nullable();
+            $table->string('image_name')->nullable();
             $table->tinyInteger('armor_class');
             $table->tinyInteger('FOR');
             $table->tinyInteger('DES');

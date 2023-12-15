@@ -7,10 +7,15 @@
 
 
             @if ($character->image !== null)
-                <img src="{{$character->image}}" class="card-img-top" alt="{{$character->name}}">
+                <div class="w-50">
+                    <img class="img-fluid" src="{{ asset('storage/' . $character->image) }}" alt="{{ $character->name }}">
+                    <p>{{ $character->image_name }}</p>
+                </div>
             @else
                 <img src="/img/placeholder.webp" alt="{{$character->name}}">
             @endif
+
+
 
             <div class="card-body">
                 <p><strong>Race:</strong> {{ $character->race?->name }}</p>

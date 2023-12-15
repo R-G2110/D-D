@@ -26,7 +26,6 @@ class CharactersTableSeeder extends Seeder
             $character->height = $faker->randomFloat(2, 1, 3);
             $character->weight = $faker->numberBetween(1, 1000);
             $character->background = $faker->words(3, true);
-            $character->image = $faker->imageUrl(360, 360, 'animals', true, 'dogs', true, 'jpg');
             $character->armor_class = $faker->numberBetween(1,20);
             $character->FOR = $faker->numberBetween(4, 20);
             $character->DES = $faker->numberBetween(4, 20);
