@@ -9,13 +9,21 @@ body{
 
 .menu{
     background-color: #77a47f;
+    height: 100%;
+    width: 100%;
+}
+
+nav {
+    height: 50px;
+
 }
 
 .change{
     color: white;
+    padding: 0px;
     &:hover{
-        font-size: large;
         font-weight: bold;
         color: #191011;
+
     }
 }
