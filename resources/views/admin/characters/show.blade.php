@@ -1,10 +1,10 @@
 @extends('layouts.admin')
 
 @section('content')
-
     <div class="container mt-5">
-        <h1 class="text-center">Info {{$character->name}}</h1>
+        <h1 class="text-center">Info {{ $character->name }}</h1>
         <div class="card justify-content-center w-50">
+
 
             @if ($character->image !== null)
                 <img src="{{$character->image}}" class="card-img-top" alt="{{$character->name}}">
@@ -30,16 +30,16 @@
 
                 <form class="delete-btn d-inline-block" action="{{ route('admin.characters.destroy', $character) }}" method="POST"
                     onsubmit="return confirm('Sei sicuro di voler eliminare {{$character->name}}?')">
+
                     @csrf
                     @method('DELETE')
-                    <button type="submit"  class="btn btn-danger"><i class="fa-regular fa-trash-can"></i> Delete</button>
+                    <button type="submit" class="btn btn-danger"><i class="fa-regular fa-trash-can"></i> Delete</button>
                 </form>
 
+            </div>
         </div>
-    </div>
+    @endsection
 
-@endsection
-
-@section('title')
-    | Homepage
-@endsection
+    @section('title')
+        | Homepage
+    @endsection
