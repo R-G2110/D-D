@@ -1,1 +1,21 @@
-@import '~bootstrap/scss/bootstrap'
+@import '~bootstrap/scss/bootstrap';
+
+body{
+    background-image: url('/resources/img/d-d-img.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+}
+
+.menu{
+    background-color: #77a47f;
+}
+
+.change{
+    color: white;
+    &:hover{
+        font-size: large;
+        font-weight: bold;
+        color: #191011;
+    }
+}
